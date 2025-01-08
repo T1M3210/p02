@@ -1,0 +1,4 @@
+timN -- 2025-01-08 05:50
+  * Finished Design Doc 
+  * Created devlog.txt
+  * Updated README with roles and WIP description
