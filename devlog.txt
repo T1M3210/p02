@@ -1,3 +1,11 @@
+danielP -- 2025-01-10 11:43
+  * Added basic functions for math algo
+willN -- 2025-01-10 11:42:
+  * Added basic functions for database
+willN -- 2025-01-09 21:10
+  * Updated design doc:
+    * added specific JSON formatting for db
+    * updated user matching algo on db
 yinweiZ -- 2025-01-07 18:00
   * Created flag
 timN -- 2025-01-08 05:50
