@@ -9,7 +9,7 @@ import sqlite3
 import os
 from .auth import password_hash, user_exists
 #Establish database file path
-DB_FILE = os.path.join(os.path.dirname(__file__), "../db.db")
+DB_FILE = os.path.join(os.path.dirname(__file__), "../xase.db")
 
 # --------------- Initializing functions ---------------
 def create_tables(db):
@@ -51,7 +51,7 @@ def setup_db():
     db.commit()
     db.close()
 
-# --------------- Operational Functions ---------------
+# --------------- Operational Funcprofiletions ---------------
 
 # ----- users Functions -----
 
