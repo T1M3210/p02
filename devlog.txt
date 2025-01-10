@@ -7,6 +7,8 @@ danielP -- 2025-01-10 11:43
   * Added basic functions for math algo
 willN -- 2025-01-10 11:42:
   * Added basic functions for database
+yinweiZ -- 2025-01-100 11:41
+  * Created onboarding page structure, js and html
 willN -- 2025-01-09 21:10
   * Updated design doc:
     * added specific JSON formatting for db
@@ -14,7 +16,7 @@ willN -- 2025-01-09 21:10
 yinweiZ -- 2025-01-07 18:00
   * Created flag
 timN -- 2025-01-08 05:50
-  * Finished Design Doc 
+  * Finished Design Doc
   * Created devlog.txt
   * Updated README with roles and WIP description
 danielP -- 2025-01-08 17:50
