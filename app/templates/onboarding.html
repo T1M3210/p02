@@ -1,0 +1,31 @@
+<!-- Tim Ng, Daniel Park, Will Nzeuton, Yinwei Zhang
+Team lobo2
+SoftDev
+p02
+2024-1-09 -->
+
+<body>
+<section>
+
+<h1>Stuymble over love.</h1>
+<h2>Match with your future at Stuyvesant High School. To get started, you
+need to answer a couple of personal questions for us to determine your
+compatibility.</h2>
+
+
+<form id="selectionForm" method="POST" style="width: 150px; height: 40px">
+        <select name="like" id="like" onchange="submitSelectionForm()" style="width: 100%; height: 100%">
+            {% for category in categories %}
+                <option value="{{ category }}"
+                        {% if category == selected_category %}
+                            selected
+                        {% endif %}
+                >
+                    {{ category }}
+                </option>
+            {% endfor %}
+        </select>
+</form>
+
+</section>
+</body>
