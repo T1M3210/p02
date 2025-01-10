@@ -1,3 +1,5 @@
+timN -- 2025-01-10 11:45
+  * Added basic function to link database to __init__.py
 danielP -- 2025-01-10 11:43
   * Added basic functions for math algo
 willN -- 2025-01-10 11:42:
