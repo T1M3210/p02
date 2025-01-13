@@ -20,6 +20,7 @@ fill_db(5)
 def home():
     return render_template('index.html')
 
+
 @app.route("/onboard")
 def onboard():
     return render_template('onboarding.html')
@@ -41,6 +42,10 @@ def login():
 @app.route("/signup")
 def signup():
     return render_template("signup.html")
+
+@app.route("/profile")
+def home():
+    return render_template('profile.html')
 
 
 if __name__ == "__main__":
