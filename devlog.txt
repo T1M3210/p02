@@ -1,3 +1,8 @@
+willN -- 2025-01-13 18:38
+  * Changed matching algo to reward points per interest
+  * Added function to fill db w randomized user presets 
+danielP -- 2025-01-13 11:00
+  * Wrote matching algo
 timN -- 2025-01-13 10:57
   * Finished README.md (launch code + install guide)
   * Added keys folder with README.md
