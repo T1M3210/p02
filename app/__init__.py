@@ -11,6 +11,13 @@ import os
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
+from db_utils import *
+
+setup_db()
+drop_tables()
+create_tables()
+fill_db(5)
+
 @app.route("/")
 def home():
     return render_template('index.html')
