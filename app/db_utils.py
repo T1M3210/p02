@@ -110,30 +110,43 @@ def delete_user(id):
         c.close()
 
 #----- Matching Functions -----
+def count_users():
+    db = sqlite3.connect(DB_FILE)
+    try:
+        c = db.cursor()
+        c.execute("SELECT COUNT(*) FROM users")
+        n = c.fetchone()[0]
+        return n
+    except sqlite3.IntegrityError:
+        print(f"create_user: {e}")
+    finally:
+        c.close()
 
 def read_profile(user_id):
     db = sqlite3.connect(DB_FILE)
     try:
         c = db.cursor()
-        c.execute("SELECT profile FROM users WHERE id = ?", (id,))
-        profile = c.fetchone()
+        c.execute("SELECT profile FROM users WHERE id = ?", (user_id,))
+        profile = c.fetchone()[0]
+        return json.loads(profile)
     except sqlite3.Error as e:
         print(f"read_profile: {e}")
     finally:
         c.close()
-        return json.loads(profile)
+        
 
 def read_prefs(user_id):
     db = sqlite3.connect(DB_FILE)
     try:
         c = db.cursor()
-        c.execute("SELECT preferences FROM users WHERE id = ?", (id,))
-        prefs = c.fetchone()
+        c.execute("SELECT preferences FROM users WHERE id = ?", (user_id,))
+        prefs = c.fetchone()[0]
+        return json.loads(prefs)
     except sqlite3.Error as e:
         print(f"read_profile: {e}")
     finally:
         c.close()
-        return json.loads(prefs)
+        
 
 #----- Preset data creation -----
 def fill_db(n):
@@ -154,15 +167,11 @@ def fill_db(n):
 
         first_name, last_name = chosen_name.split(' ')
 
-        print(chosen_name)
-
         dob_year = random.randint(2007, 2010)
         dob_month = random.randint(1, 12)
-        dob_day = random.randint(1, 29)
+        dob_day = random.randint(1, 28)
 
         dob = datetime(dob_year, dob_month, dob_day)
-
-        print(dob)
 
         hash = "hash"
         email = first_name.lower() + str(i) + "@gmail.com"
@@ -178,30 +187,28 @@ def fill_db(n):
         prefs = {
             "grade": {
                 "pref": random.sample(range(9, 13), k=random.randint(1, 4)),
-                "required": random.choice([True, False])
+                "required": random.choice([True, False, False, False])
             },
             "gender": {
                 "pref": random.sample(range(0, 3), k=random.randint(1, 3)),
-                "required": random.choice([True, False])
+                "required": random.choice([True, False, False, False])
             },
             "location": {
                 "pref": random.sample(["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"], k=random.randint(1, 5)),
-                "required": random.choice([True, False])
+                "required": random.choice([True, False, False, False])
             },
             "height": {
-                "pref": (random.randint(48, 60), random.randint(61, 78)),
-                "required": random.choice([True, False])
+                "pref": list(range(random.randint(150, 174), random.randint(175, 200))),
+                "required": random.choice([True, False, False, False])
             },
             "interests": {
-                "pref": random.sample(["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"], k=random.randint(1, 3)),
-                "required": random.choice([True, False])
+                "pref": random.sample(["Sports", "Music", "Art", "Tech", "Gaming", "Reading", "Traveling"], k=random.randint(1, 3)),
+                "required": random.choice([False])
             }
         }
         match_rank = {
             f"user_{i}": random.randint(50, 100)  # Compatibility scores
             for i in range(1, random.randint(5, 15))  # Random number of matches
         }
-        print(profile)
-        print(prefs)
 
         create_user(first_name, last_name, "password", email, dob, json.dumps(profile), json.dumps(prefs), json.dumps(match_rank))

@@ -1,4 +1,4 @@
-from db_utils import read_profile, read_prefs
+from db_utils import read_profile, read_prefs, count_users
 
 def pref_match(user1_id, user2_id):
     score = 0
@@ -11,7 +11,7 @@ def pref_match(user1_id, user2_id):
         required = user1_pref[data]["required"]
         profile = user2_prof[data]
         if required and profile not in preference:
-            return -1
+            return -1000000
         if profile in preference:
             score += 1
     return score
@@ -19,3 +19,10 @@ def pref_match(user1_id, user2_id):
 
 def compatiblity_score(user1, user2):
     return pref_match(user1, user2) + pref_match(user2, user1)
+
+def create_match_rank(n):
+    ranks = {}
+    for user2 in range(1, count_users()):
+        if(n != user2):
+            ranks[user2] = compatiblity_score(n, user2)
+    print(sorted(ranks.items(), key=lambda item: item[1], reverse=True))

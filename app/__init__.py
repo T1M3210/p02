@@ -12,9 +12,12 @@ app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
 from db_utils import *
+from match_utils import *
 
 setup_db()
-fill_db(5)
+fill_db(100000)
+
+create_match_rank(1)
 
 @app.route("/")
 def home():
