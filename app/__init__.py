@@ -15,6 +15,29 @@ app.secret_key = os.urandom(32)
 def home():
     return render_template('index.html')
 
+@app.route("/onboard")
+def onboard():
+    return render_template('onboarding.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        user = User.get_by_username(username)
+        if user and user.verify_password(user.password_hash, password):
+            session['user_id'] = user.id
+            flash("Login successful!", "success")
+            return redirect(url_for('home'))
+        else:
+            flash("Invalid username or password.", "danger")
+    return render_template('login.html')
+
+@app.route("/signup")
+def signup():
+    return render_template("signup.html")
+
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
