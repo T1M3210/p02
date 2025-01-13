@@ -15,7 +15,7 @@ from db_utils import *
 from match_utils import *
 
 setup_db()
-fill_db(10000)
+fill_db(10)
 
 create_match_rank(1)
 
