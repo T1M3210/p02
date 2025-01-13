@@ -1,4 +1,3 @@
 .DS_Store
-*.db
 __pycache__/
 .env
