@@ -15,7 +15,7 @@ from db_utils import *
 from match_utils import *
 
 setup_db()
-fill_db(100000)
+fill_db(10000)
 
 create_match_rank(1)
 
@@ -47,7 +47,7 @@ def signup():
     return render_template("signup.html")
 
 @app.route("/profile")
-def home():
+def profile():
     return render_template('profile.html')
 
 

@@ -25,4 +25,5 @@ def create_match_rank(n):
     for user2 in range(1, count_users()):
         if(n != user2):
             ranks[user2] = compatiblity_score(n, user2)
-    print(sorted(ranks.items(), key=lambda item: item[1], reverse=True))
+    match_rank = dict(sorted(ranks.items(), key=lambda item: item[1], reverse=True))
+    print(match_rank)
