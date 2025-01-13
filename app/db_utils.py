@@ -202,7 +202,7 @@ def fill_db(n):
                 "required": random.choice([True, False, False, False])
             },
             "interests": {
-                "pref": random.sample(["Sports", "Music", "Art", "Tech", "Gaming", "Reading", "Traveling"], k=random.randint(1, 3)),
+                "pref": random.sample(["Sports", "Music", "Art", "Tech", "Gaming", "Reading", "Traveling"], k=random.randint(3, 5)),
                 "required": random.choice([False])
             }
         }

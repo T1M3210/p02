@@ -12,8 +12,15 @@ def pref_match(user1_id, user2_id):
         profile = user2_prof[data]
         if required and profile not in preference:
             return -1000000
+        
         if profile in preference:
+            print(f"Point awarded for {data} to {user2_id} from {user1_id}")
             score += 1
+        elif data == "interests":
+            for i in preference:
+                if i in profile:
+                    print(f"Point awarded for {data}-{i} to {user2_id} from {user1_id}")
+                    score += 1 
     return score
 
 
