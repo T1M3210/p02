@@ -10,7 +10,8 @@ p02
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" type="text/css">
+
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" type="text/css">
     <link href="https://use.typekit.net/gma7sba.css" rel="stylesheet">
 </head>
 <body>
@@ -39,7 +40,7 @@ p02
             <h2 style="margin: 10px; color: #dadada">Match Now!</h2>
     </a>
     <a class="categories" href="/category">
-        <img src="{{ url_for('static', filename='images/icons/filter.svg') }}" alt="Filter by Categories" style="width: 50px; margin-bottom: 20px">
+        <img src="{{ url_for('static', filename='images/icons/filter.svg') }}" alt="Messaging" style="width: 50px; margin-bottom: 20px">
         <h2 style="margin: 5px">Messaging</h2>
     </a>
     {% if guest %}
