@@ -58,7 +58,7 @@ $ foo\Scripts\activate
 ```
 $ pip install -r requirements.txt
 ```
-## Launch Codes: [w.i.p]
+## Launch Codes: 
 1. Run the database setup file
 ``` 
 $ python3 app/setup_db.py
