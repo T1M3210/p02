@@ -64,7 +64,7 @@ def create_user(name_first, name_last, password, email, dob, profile, preference
     db = sqlite3.connect(DB_FILE)
     try:
         c = db.cursor()
-        c.execute("INSERT INTO users (name_first, name_list, hash, email, dob, profile, preferences, match_rank) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (name_first, name_last, password, email, dob, profile, preferences, match_rank))
+        c.execute("INSERT INTO users (name_first, name_last, hash, email, dob, profile, preferences, match_rank) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (name_first, name_last, password, email, dob, profile, preferences, match_rank))
         db.commit()
     except sqlite3.IntegrityError:
         print(f"create_user: {e}")
@@ -137,7 +137,7 @@ def read_prefs(user_id):
 
 #----- Preset data creation -----
 def fill_db(n):
-    male_first_names = ('Topher', 'Topher', 'Topher', 'Topher', 'John', 'Daniel', 'Tasnim', 'Tahmim', 'Mark', 'Kenneth', 'Dave', 'Bob', 'Will', 'Tim', 'Jake', 'Dexter', 'Jacob', 'Joe', 'David', 'Aiden', 'James', 'Michael', 'Henry', 'Ryan') 
+    male_first_names = ('Topher', 'Topher', 'Topher', 'Topher', 'John', 'Daniel', 'Tasnim', 'Tahmim', 'Mark', 'Kenneth', 'Dave', 'Bob', 'Will', 'Tim', 'Jake', 'Dexter', 'Jacob', 'Joe', 'David', 'Aiden', 'James', 'Michael', 'Henry', 'Ryan')
     female_first_names = ('Emily', 'Anne', 'Hannah', 'Michelle', 'Danielle', 'Rebecca', 'Abby', 'Zoey', 'Andrea', 'Grace', 'Stella' , 'Vivienne', 'Sandra', 'Melanie', 'Melody', 'Taylor', 'Catherine')
     last_names = ('Mykolyk', 'Mykolyk', 'Mykolyk', 'Mykolyk', 'Mykolyk', 'Williams', 'Smith', 'Ng', 'Park', 'Kim', 'Zhang', 'Zhou', 'Nzeuton', 'James', 'Garcia', 'Nzeuton', 'Islam', 'Gabai', 'Hassan', 'Chen', 'Chan', 'Rahman', 'Singh', 'Marcus', 'Patel', 'Nguyen', 'Johnson', 'Dickinson', 'Richards', 'Philips', 'Cartier', 'Dior', 'Bird')
 
@@ -167,21 +167,21 @@ def fill_db(n):
         hash = "hash"
         email = first_name.lower() + str(i) + "@gmail.com"
         profile = {
-            "height": random.randint(150, 200), 
-            "gender": random.randint(0, 2), 
+            "height": random.randint(150, 200),
+            "gender": random.randint(0, 2),
             "grade": random.randint(9, 12),
             "location": random.choice(["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"]),
             "interests": random.sample(["Sports", "Music", "Art", "Tech", "Gaming", "Reading", "Traveling"], k=random.randint(2, 5)),
-            "bio": " ".join(random.choices(string.ascii_letters + " ", k=50)).strip(), 
-            "picture": f"/images/user_{random.randint(1, 1000)}.jpg" 
+            "bio": " ".join(random.choices(string.ascii_letters + " ", k=50)).strip(),
+            "picture": f"/images/user_{random.randint(1, 1000)}.jpg"
         }
         prefs = {
             "grade": {
-                "pref": random.sample(range(9, 13), k=random.randint(1, 4)), 
+                "pref": random.sample(range(9, 13), k=random.randint(1, 4)),
                 "required": random.choice([True, False])
             },
             "gender": {
-                "pref": random.sample(range(0, 3), k=random.randint(1, 3)), 
+                "pref": random.sample(range(0, 3), k=random.randint(1, 3)),
                 "required": random.choice([True, False])
             },
             "location": {
@@ -189,11 +189,11 @@ def fill_db(n):
                 "required": random.choice([True, False])
             },
             "height": {
-                "pref": (random.randint(48, 60), random.randint(61, 78)),  
+                "pref": (random.randint(48, 60), random.randint(61, 78)),
                 "required": random.choice([True, False])
             },
             "interests": {
-                "pref": random.sample(["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"], k=random.randint(1, 3)),  
+                "pref": random.sample(["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"], k=random.randint(1, 3)),
                 "required": random.choice([True, False])
             }
         }
@@ -204,7 +204,4 @@ def fill_db(n):
         print(profile)
         print(prefs)
 
-        create_user(first_name, last_name, "password", email, dob, profile, prefs, match_rank)
-
-
-
+        create_user(first_name, last_name, "password", email, dob, json.dumps(profile), json.dumps(prefs), json.dumps(match_rank))
