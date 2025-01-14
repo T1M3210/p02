@@ -146,8 +146,18 @@ def read_prefs(user_id):
         print(f"read_profile: {e}")
     finally:
         c.close()
-        
 
+def read_ranks(user_id):
+    db = sqlite3.connect(DB_FILE)
+    try:
+        c = db.cursor()
+        c.execute("SELECT match_rank FROM users WHERE id = ?", (user_id,))
+        ranks = c.fetchone()[0]
+        return json.loads(ranks)
+    except sqlite3.Error as e:
+        print(f"read_ranks: {e}")
+    finally:
+        c.close()
 #----- Preset data creation -----
 def fill_db(n):
     male_first_names = ('Topher', 'Topher', 'Topher', 'Topher', 'John', 'Daniel', 'Tasnim', 'Tahmim', 'Mark', 'Kenneth', 'Dave', 'Bob', 'Will', 'Tim', 'Jake', 'Dexter', 'Jacob', 'Joe', 'David', 'Aiden', 'James', 'Michael', 'Henry', 'Ryan')

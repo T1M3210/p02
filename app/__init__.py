@@ -14,15 +14,18 @@ app.secret_key = os.urandom(32)
 from db_utils import *
 from match_utils import *
 
+from match_routes import register_routes
+
 setup_db()
-fill_db(10)
+fill_db(10000)
 
 create_match_rank(1)
+
+register_routes(app)
 
 @app.route("/")
 def home():
     return render_template('index.html')
-
 
 @app.route("/onboard")
 def onboard():
@@ -49,7 +52,6 @@ def signup():
 @app.route("/profile")
 def profile():
     return render_template('profile.html')
-
 
 if __name__ == "__main__":
     app.debug = True

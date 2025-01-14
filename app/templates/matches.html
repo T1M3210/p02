@@ -1,0 +1,32 @@
+<!-- Tim Ng, Daniel Park, Will Nzeuton, Yinwei Zhang
+Team lobo2
+SoftDev
+p02
+2024-1-09 -->
+
+<body>
+    <section>
+        {% for user in users %}
+        {% set profile = user[6] %}
+        <div class="card">
+           
+            <div class="card-body">
+                <h2 class="card-title">{{user[1]}} {{user[2]}}</h2>
+                <p><strong>{{profile.bio}}</strong></p>
+                <p><strong>Height:</strong> {{ profile.height }} cm</p>
+                <p><strong>Gender:</strong> {{ profile.gender }}</p>
+                <p><strong>Grade:</strong> {{ profile.grade }}</p>
+                <p><strong>Location:</strong> {{ profile.location }}</p>
+                <p><strong>Interests:</strong></p>
+                <ul>
+                    {% for interest in profile.interests %}
+                        <li>{{ interest }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+    </section>
+</body>
+    
