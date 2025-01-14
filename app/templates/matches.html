@@ -13,8 +13,8 @@ p02
             <div class="card-body">
                 <h2 class="card-title">{{user[1]}} {{user[2]}}</h2>
                 <p><strong>{{profile.bio}}</strong></p>
-                <p><strong>Height:</strong> {{ profile.height }} cm</p>
-                <p><strong>Gender:</strong> {{ profile.gender }}</p>
+                <p><strong>Height:</strong> {{ profile.height // 12}}'{{ profile.height % 12 }}"</p>
+                <p><strong>Gender:</strong> {{ ["Male", "Female", "Nonbinary"][profile.gender] }}</p>
                 <p><strong>Grade:</strong> {{ profile.grade }}</p>
                 <p><strong>Location:</strong> {{ profile.location }}</p>
                 <p><strong>Interests:</strong></p>

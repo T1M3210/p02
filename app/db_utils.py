@@ -13,6 +13,7 @@ import string
 from datetime import datetime
 
 from auth_utils import password_hash
+
 #Establish database file path
 DB_FILE = os.path.join(os.path.dirname(__file__), "../xase.db")
 
@@ -160,9 +161,59 @@ def read_ranks(user_id):
         c.close()
 #----- Preset data creation -----
 def fill_db(n):
-    male_first_names = ('Topher', 'Topher', 'Topher', 'Topher', 'John', 'Daniel', 'Tasnim', 'Tahmim', 'Mark', 'Kenneth', 'Dave', 'Bob', 'Will', 'Tim', 'Jake', 'Dexter', 'Jacob', 'Joe', 'David', 'Aiden', 'James', 'Michael', 'Henry', 'Ryan')
-    female_first_names = ('Emily', 'Anne', 'Hannah', 'Michelle', 'Danielle', 'Rebecca', 'Abby', 'Zoey', 'Andrea', 'Grace', 'Stella' , 'Vivienne', 'Sandra', 'Melanie', 'Melody', 'Taylor', 'Catherine')
-    last_names = ('Mykolyk', 'Mykolyk', 'Mykolyk', 'Mykolyk', 'Mykolyk', 'Williams', 'Smith', 'Ng', 'Park', 'Kim', 'Zhang', 'Zhou', 'Nzeuton', 'James', 'Garcia', 'Nzeuton', 'Islam', 'Gabai', 'Hassan', 'Chen', 'Chan', 'Rahman', 'Singh', 'Marcus', 'Patel', 'Nguyen', 'Johnson', 'Dickinson', 'Richards', 'Philips', 'Cartier', 'Dior', 'Bird')
+    male_first_names = [
+        "Liam", "Noah", "Oliver", "Elijah", "James", "William", "Benjamin", "Lucas", "Henry", "Alexander",
+        "Mason", "Michael", "Ethan", "Daniel", "Jacob", "Logan", "Jack", "Aiden", "Matthew", "Joseph", "Samuel",
+        "David", "Carter", "Owen", "Wyatt", "John", "Luke", "Anthony", "Dylan", "Isaac", "Grayson", "Gabriel",
+        "Leo", "Julian", "Aaron", "Charles", "Christopher", "Joshua", "Andrew", "Thomas", "Nathan", "Harrison",
+        "Connor", "Landon", "Zachary", "Hunter", "Isaiah", "Asher", "Caleb", "Christian", "Cameron", "Ryan",
+        "Jordan", "Eli", "Adam", "Miles", "Xavier", "Colton", "Austin", "Josiah", "Dominic", "Nolan", "Robert",
+        "Evan", "Ian", "Santiago", "Cooper", "Victor", "Ezekiel", "Lincoln", "Jaxon", "Luis", "Kai", "Maverick",
+        "Alex", "Axel", "Jameson", "Sean", "Everett", "Blake", "Karter", "Sawyer", "Max", "Milo", "Beau",
+        "Maddox", "Giovanni", "Tristan", "Elliott", "Brayden", "Cole", "Jude", "Hudson", "Bennett", "Arthur",
+        "Grant", "Easton", "Finn", "Riley", "Seth", "Kingston", "Ashton", "Brock", "Jace", "Jasper", "Wesley",
+        "Emmett", "Tobias", "Felix", "Camden", "Charlie", "Dawson", "Luca", "Theo", "George", "Jaxson", "Sullivan",
+        "Roman", "Phoenix", "Finley", "Beckett", "Damian", "Theo", "Milo", "Knox", "Maddox", "Greyson", "Cassius",
+        "Hugo", "Winston", "Zane", "Ford", "Cash", "Reed", "Easton", "Chase", "Deacon", "Tyler", "Blaine", "Axel",
+        "Zander", "Griffin", "Jett", "Sterling", "Maximus", "Zion", "Joaquin", "Finnegan", "Franklin", "Lachlan",
+        "Atticus", "Sawyer", "Everett", "Roman", "Sage", "Caden", "Kaius", "Dakota", "Emilio", "Kai", "River",
+        "Alfred", "Thatcher", "Ronan", "Hendrix", "Harris", "Theo", "Weston", "Asher", "Alec", "Dante", "Moses",
+        "Trent", "Fletcher", "Clyde", "Dawson", "Baxter", "August", "Oliver", "Cason", "Gage", "Maverick", "Ryder",
+        "Malcolm", "Alvin", "Dean", "Lennox", "Odin", "Harrison", "Vance", "Brody", "Caden", "Tanner", "Westley",
+        "Kellan", "Emmett", "Quentin", "Preston", "Donovan", "Ronin", "Paxton", "Briggs", "Talon", "Sonny", "Calvin"
+    ]
+    female_first_names = [
+        "Olivia", "Emma", "Ava", "Sophia", "Isabella", "Mia", "Amelia", "Harper", "Evelyn", "Abigail",
+        "Ella", "Scarlett", "Grace", "Chloe", "Aria", "Zoe", "Nora", "Lily", "Avery", "Charlotte", "Elizabeth",
+        "Sofia", "Victoria", "Madison", "Eleanor", "Hazel", "Luna", "Riley", "Leah", "Ellie", "Paisley", "Lillian",
+        "Addison", "Willow", "Lucy", "Audrey", "Bella", "Nova", "Brooklyn", "Hannah", "Savannah", "Maya", "Skylar",
+        "Layla", "Leila", "Kinsley", "Sophie", "Violet", "Claire", "Ariana", "Alice", "Camila", "Lila", "Ruby",
+        "Sarah", "Kennedy", "Caroline", "Madeline", "Katherine", "Mackenzie", "Stella", "Naomi", "Sadie", "Eva",
+        "Archer", "Samantha", "Genesis", "Maria", "Autumn", "Gemma", "Lydia", "Zara", "Natalie", "Rylee", "Penelope",
+        "Cora", "Peyton", "Juliana", "Vivian", "Eliana", "Emilia", "Jade", "Aubrey", "Isabel", "Quinn", "Savannah",
+        "Tessa", "Gianna", "Lauren", "Madelyn", "Aspen", "Summer", "Adeline", "Mila", "Ember", "Gracie", "Ivy", "Megan",
+        "Alaina", "Delilah", "Mariah", "Jasmine", "Norah", "Dakota", "Alexa", "Riley", "Kylie", "Cecilia", "Sienna", "Sage",
+        "Serenity", "Summer", "Lilyana", "Mckenna", "Payton", "Aubree", "Reagan", "Caitlyn", "Hadley", "Brianna", "Autumn",
+        "Blake", "Lola", "Roxanne", "Jocelyn", "Bianca", "Sabrina", "Delaney", "Cameron", "Brooke", "Marley", "Teagan", "Sloane",
+        "Ellis", "Kaitlyn", "Kendall", "Juliette", "Maggie", "Leah", "Rory", "Ashley", "Aiden", "Tatum", "Addyson", "Jordan", "Piper",
+        "Megan", "Alicia", "Paige", "Valeria", "Lia", "Carmen", "Finley", "Chloe", "Amaya", "Scarlet", "Tatum", "Avery", "Sophia", "Megan",
+        "Sophie", "Vivienne", "Diana", "Phoebe", "Harleigh", "Rosalie", "Jolie", "Genevieve", "Caitlin", "Hope", "Sierra", "Paisley", "Emersyn",
+        "Abby", "Rosie", "Molly", "Nina", "Lana", "Lilah", "Brynlee", "Hayden", "Tori", "Brynlee", "Ainsley", "Elsa", "Allison", "Addison", "Izzy",
+        "Opal", "Nellie", "Juniper", "Athena", "Finley", "Lola", "Carly", "Alyssa", "Mira", "Lark", "Zoey", "Mariana", "Eden", "Fiona"
+    ]
+    last_names = [
+        "Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "Davis", "García", "Rodríguez", "Martínez",
+        "Hernández", "Lopez", "González", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin",
+        "Lee", "Perez", "White", "Harris", "Sánchez", "Clark", "Ramírez", "Lewis", "Roberts", "Gómez", "Hall", "Young",
+        "King", "Scott", "Green", "Adams", "Baker", "Nelson", "Carter", "Mitchell", "Perez", "Robinson", "Walker", "Evans",
+        "Torres", "Collins", "Edwards", "Stewart", "Morris", "Murphy", "Rivera", "Cook", "Rogers", "Gutierrez", "Ortiz",
+        "Morgan", "Cooper", "Reyes", "Jenkins", "Parker", "Kim", "Bell", "Wright", "Chavez", "Diaz", "Hayes", "Myers",
+        "Ford", "Hughes", "Washington", "Butler", "Simmons", "Foster", "Patterson", "Gray", "James", "Dixon", "Hansen",
+        "Hernandez", "Graham", "Kelly", "Bowman", "Webb", "Ryan", "Williamson", "Campbell", "Bennett", "Bryant", "Harrison",
+        "Diaz", "Gibson", "Mendoza", "Richards", "Williamson", "Carson", "Riley", "Warren", "Chang", "Norris", "Sullivan",
+        "Bishop", "Shaw", "Davidson", "Alexander", "Cameron", "Palmer", "Mills", "Gibson", "Hoffman", "Cunningham", "Black",
+        "Snyder", "Johnston", "Dean", "Chavez", "Meyer", "Brock", "Ferguson", "Mason", "Ryan", "Tucker", "Arnold", "Freeman"
+    ]
 
     for i in range(n):
         chosen_gender = random.randint(0, 1)
@@ -186,7 +237,7 @@ def fill_db(n):
         hash = "hash"
         email = first_name.lower() + str(i) + "@gmail.com"
         profile = {
-            "height": random.randint(150, 200),
+            "height": random.randint(25, 47) + random.randint(25, 47),
             "gender": random.randint(0, 2),
             "grade": random.randint(9, 12),
             "location": random.choice(["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"]),
@@ -208,7 +259,7 @@ def fill_db(n):
                 "required": random.choice([True, False, False, False])
             },
             "height": {
-                "pref": list(range(random.randint(150, 174), random.randint(175, 200))),
+                "pref": list(range(random.randint(60, 68), random.randint(68, 84))),
                 "required": random.choice([True, False, False, False])
             },
             "interests": {
@@ -222,3 +273,4 @@ def fill_db(n):
         }
 
         create_user(first_name, last_name, "password", email, dob, json.dumps(profile), json.dumps(prefs), json.dumps(match_rank))
+        

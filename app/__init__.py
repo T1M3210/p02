@@ -17,7 +17,44 @@ from match_utils import *
 from match_routes import register_routes
 
 setup_db()
-fill_db(10000)
+
+zoey_profile = {
+    "height": 64,
+	"gender": 1,
+	"grade": 12,
+	"location": "Manhattan",
+	"interests": ["Music", "Reading", "Money"],
+	"bio": "gay people are still people",
+	"picture": "/zmail/0.jpg"
+}
+
+zoey_preferences = {
+    "grade": {
+            "pref": [12],
+            "required": True
+    },
+    "gender": {
+            "pref": [0,1,2],
+            "required": False
+    },
+    "location": {
+            "pref": ["Manhattan"],
+            "required": False
+    },
+    "height": {
+        "pref": [i for i in range(66, 72)],
+        "required": True
+    },
+    "interests": {
+        "pref": ["Music", "Having fun"],
+        "required": False
+    }
+}
+
+create_user("Zoey", "Marcus", "password", "zmail@gmail.com", "8/28/2007", json.dumps(zoey_profile), json.dumps(zoey_preferences), "\{\}")
+create_match_rank(1)
+
+fill_db(100)
 
 create_match_rank(1)
 

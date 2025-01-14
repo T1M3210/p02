@@ -1,6 +1,6 @@
 import json
 
-from db_utils import *
+from db_utils import read_prefs, read_profile, update_user, count_users
 
 def pref_match(user1_id, user2_id):
     score = 0
@@ -36,3 +36,7 @@ def create_match_rank(n):
             ranks[user2] = compatiblity_score(n, user2)
     match_rank = dict(sorted(ranks.items(), key=lambda item: item[1], reverse=True))
     update_user(n, "match_rank", json.dumps(match_rank))
+
+def update_match_ranks():
+    for user in range(1, count_users()):
+        create_match_rank(user)
