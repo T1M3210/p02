@@ -14,7 +14,8 @@ app.secret_key = os.urandom(32)
 from db_utils import *
 from match_utils import *
 
-from match_routes import register_routes
+from match_routes import *
+from auth_routes import *
 
 setup_db()
 
@@ -58,8 +59,6 @@ fill_db(100)
 
 create_match_rank(1)
 
-register_routes(app)
-
 @app.route("/")
 def home():
     return render_template('index.html')
@@ -67,24 +66,6 @@ def home():
 @app.route("/onboard")
 def onboard():
     return render_template('onboarding.html')
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-        user = User.get_by_username(username)
-        if user and user.verify_password(user.password_hash, password):
-            session['user_id'] = user.id
-            flash("Login successful!", "success")
-            return redirect(url_for('home'))
-        else:
-            flash("Invalid username or password.", "danger")
-    return render_template('login.html')
-
-@app.route("/signup")
-def signup():
-    return render_template("signup.html")
 
 @app.route("/profile")
 def profile():

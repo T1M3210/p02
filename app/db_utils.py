@@ -134,7 +134,7 @@ def read_profile(user_id):
         print(f"read_profile: {e}")
     finally:
         c.close()
-        
+
 
 def read_prefs(user_id):
     db = sqlite3.connect(DB_FILE)
@@ -162,7 +162,7 @@ def read_ranks(user_id):
 #----- Preset data creation -----
 def fill_db(n):
     male_first_names = [
-        "Liam", "Noah", "Oliver", "Elijah", "James", "William", "Benjamin", "Lucas", "Henry", "Alexander",
+        "Yinwei", "Will", "Liam", "Tim", "Noah", "Oliver", "Elijah", "James", "William", "Benjamin", "Lucas", "Henry", "Alexander",
         "Mason", "Michael", "Ethan", "Daniel", "Jacob", "Logan", "Jack", "Aiden", "Matthew", "Joseph", "Samuel",
         "David", "Carter", "Owen", "Wyatt", "John", "Luke", "Anthony", "Dylan", "Isaac", "Grayson", "Gabriel",
         "Leo", "Julian", "Aaron", "Charles", "Christopher", "Joshua", "Andrew", "Thomas", "Nathan", "Harrison",
@@ -183,7 +183,7 @@ def fill_db(n):
         "Kellan", "Emmett", "Quentin", "Preston", "Donovan", "Ronin", "Paxton", "Briggs", "Talon", "Sonny", "Calvin"
     ]
     female_first_names = [
-        "Olivia", "Emma", "Ava", "Sophia", "Isabella", "Mia", "Amelia", "Harper", "Evelyn", "Abigail",
+        "Zhang", "Nzeuton", "Ng", "Park", "Olivia", "Emma", "Ava", "Sophia", "Isabella", "Mia", "Amelia", "Harper", "Evelyn", "Abigail",
         "Ella", "Scarlett", "Grace", "Chloe", "Aria", "Zoe", "Nora", "Lily", "Avery", "Charlotte", "Elizabeth",
         "Sofia", "Victoria", "Madison", "Eleanor", "Hazel", "Luna", "Riley", "Leah", "Ellie", "Paisley", "Lillian",
         "Addison", "Willow", "Lucy", "Audrey", "Bella", "Nova", "Brooklyn", "Hannah", "Savannah", "Maya", "Skylar",
@@ -238,7 +238,7 @@ def fill_db(n):
         email = first_name.lower() + str(i) + "@gmail.com"
         profile = {
             "height": random.randint(25, 47) + random.randint(25, 47),
-            "gender": random.randint(0, 2),
+            "gender": random.choice([0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]),
             "grade": random.randint(9, 12),
             "location": random.choice(["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"]),
             "interests": random.sample(["Sports", "Music", "Art", "Tech", "Gaming", "Reading", "Traveling"], k=random.randint(2, 5)),
@@ -273,4 +273,3 @@ def fill_db(n):
         }
 
         create_user(first_name, last_name, "password", email, dob, json.dumps(profile), json.dumps(prefs), json.dumps(match_rank))
-        

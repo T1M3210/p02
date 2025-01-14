@@ -1,14 +1,13 @@
 <html>
 <head>
-
-    <title> Login </title>
+    <title> Sign Up </title>
     <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
 <img class="logo" src="static/assets/logo.jpg">
 <section class="centered-login">
 <h1 style="text-align: center;margin-bottom: 50px;">
-    Welcome back!
+    Welcome!
 </h1>
 {% with messages = get_flashed_messages()%}
     {% if messages%}
@@ -17,24 +16,35 @@
         {%endfor%}
     {%endif%}
 {%endwith%}
-<form action="/login" method="POST">
+<form action="/signup" method="POST">
+  <label>
+      <h3>First Name</h3>
+      <input type="text" name="name_first" placeholder="First Name" required>
+  </label><br>
+  <label>
+      <h3>Last Name</h3>
+      <input type="text" name="name_last" placeholder="Last Name" required>
+  </label><br>
     <label>
         <h3>Email</h3>
-        <input type="email" name="email" placeholder="name@example.com" required>
+        <input type="email" name="email" placeholder="address@example.com" required>
     </label><br>
     <label>
         <h3>Password</h3>
-        <input type="password" name="password" placeholder="Your Password" required>
+        <input type="password" name="password" placeholder = "Your Password" required>
+    </label><br>
+    <label>
+        <h3>Confirm Password</h3>
+        <input type="password" name="confirm_password" placeholder = "Reenter Password" required>
     </label><br>
     <h3> </h3>
-    <button type="submit" name="sub1">Login</button>
-    <p style="text-align: center">{{ message }}</p>
+    <button type="submit" name="sub1">Sign Up</button>
+
 </form>
 <br>
 <h3 style="text-align: center">Don't have an account? Sign up <a href="/signup">here</a></h3>
 <p style="text-align: center"> Or <a href="/">continue as guest</a></p>
 </section>
-
 </body>
 
 </html>
