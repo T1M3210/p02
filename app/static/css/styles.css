@@ -6,12 +6,6 @@ p02
 2024-1-09
 */
 
-body {
-    margin: 100px;
-    background-color: rgb(12, 12, 12);
-    font-family: "aktiv-grotesk", sans-serif;
-}
-
 * {
     font-family: "aktiv-grotesk", sans-serif;
     box-sizing: border-box;
