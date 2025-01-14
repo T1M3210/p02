@@ -1,3 +1,5 @@
+willN -- 2025-01-14 11:47
+  * Added user auth functionalities :P
 willN -- 2025-01-13 18:38
   * Changed matching algo to reward points per interest
   * Added function to fill db w randomized user presets 
