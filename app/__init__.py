@@ -18,6 +18,8 @@ from auth_utils import *
 from match_routes import init_match_routes
 from auth_routes import init_auth_routes
 
+db = DB_FILE = os.path.join(os.path.dirname(__file__), "../xase.db")
+
 setup_db()
 
 zoey_profile = {

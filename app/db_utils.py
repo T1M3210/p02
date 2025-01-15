@@ -32,7 +32,7 @@ def create_tables(db):
                 profile JSON NOT NULL,
                 preferences JSON NOT NULL,
                 match_rank JSON NOT NULL,
-                liked TEXT NOT NULL COLLATE NOCASE,
+                liked TEXT COLLATE NOCASE
             );
             ''')
         db.commit()
@@ -68,7 +68,8 @@ def create_user(name_first, name_last, password, email, dob, profile, preference
         c = db.cursor()
         c.execute("INSERT INTO users (name_first, name_last, hash, email, dob, profile, preferences, match_rank) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (name_first, name_last, password_hash(password)[0], email, dob, profile, preferences, match_rank))
         db.commit()
-    except sqlite3.IntegrityError:
+    except sqlite3.IntegrityError as e:
+        print(name_first, name_last)
         print(f"create_user: {e}")
     finally:
         c.close()
