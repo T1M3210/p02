@@ -31,7 +31,8 @@ def create_tables(db):
                 dob DATE NOT NULL,
                 profile JSON NOT NULL,
                 preferences JSON NOT NULL,
-                match_rank JSON NOT NULL
+                match_rank JSON NOT NULL,
+                liked TEXT NOT NULL COLLATE NOCASE,
             );
             ''')
         db.commit()
@@ -157,6 +158,41 @@ def read_ranks(user_id):
         return json.loads(ranks)
     except sqlite3.Error as e:
         print(f"read_ranks: {e}")
+    finally:
+        c.close()
+
+def read_likes(user_id):
+    db = sqlite3.connect(DB_FILE)
+    try:
+        c = db.cursor()
+        c.execute("SELECT liked FROM users WHERE id = ?", (user_id,))
+        likes = c.fetchone()[0]
+        likes_list = likes.split(",")
+        for i in range(len(likes_list)):
+            user = likes_list[i]
+            if user != '':
+                likes_list[i] = int(user)
+            else:
+                likes_list.pop(i)
+                i -= 1
+        return  likes_list
+    except sqlite3.Error as e:
+        print(f"read_likes: {e}")
+    finally:
+        c.close()
+
+def add_like(user_id):
+    logged_in_user = get_logged_in_user()[0]
+    existing_likes = read_likes(logged_in_user)
+    existing_likes.append(user_id)
+    new_string = existing_likes.join(',')
+    db = sqlite3.connect(DB_FILE)
+    try:
+        c = db.cursor()
+        c.execute(f"UPDATE users SET liked = ? WHERE id = ?", (new_string, logged_in_user))
+        db.commit()
+    except sqlite3.Error as e:
+        print(f"add_like: {e}")
     finally:
         c.close()
 #----- Preset data creation -----

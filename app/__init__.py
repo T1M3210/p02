@@ -53,8 +53,7 @@ zoey_preferences = {
     }
 }
 
-create_user("Zoey", "Marcus", "password", "zmail@gmail.com", "8/28/2007", json.dumps(zoey_profile), json.dumps(zoey_preferences), "\{\}")
-create_match_rank(1)
+create_user("Zoey", "Marcus", "password", "zmail@gmail.com", "8/28/2007", json.dumps(zoey_profile), json.dumps(zoey_preferences), json.dumps({}))
 
 fill_db(10)
 

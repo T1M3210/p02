@@ -21,3 +21,9 @@ def init_match_routes(app):
 
             processed_users.append(user_list)
         return render_template('matches.html', users=processed_users)
+
+    @app.route("/like/<int:user_id>")
+    def like(user_id):
+        add_like(user_id)
+        print(read_likes(user_id))
+        return redirect(url_for('matches'))

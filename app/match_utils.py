@@ -19,7 +19,7 @@ def pref_match(user1_id, user2_id):
         elif data == "interests":
             for i in preference:
                 if i in profile:
-                    score += 1 
+                    score += 1
     return score
 
 def compatibility_score(user1, user2):
