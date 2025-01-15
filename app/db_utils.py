@@ -65,7 +65,7 @@ def create_user(name_first, name_last, password, email, dob, profile, preference
     db = sqlite3.connect(DB_FILE)
     try:
         c = db.cursor()
-        c.execute("INSERT INTO users (name_first, name_last, hash, email, dob, profile, preferences, match_rank) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (name_first, name_last, password, email, dob, profile, preferences, match_rank))
+        c.execute("INSERT INTO users (name_first, name_last, hash, email, dob, profile, preferences, match_rank) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (name_first, name_last, password_hash(password)[0], email, dob, profile, preferences, match_rank))
         db.commit()
     except sqlite3.IntegrityError:
         print(f"create_user: {e}")

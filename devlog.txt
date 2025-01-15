@@ -1,3 +1,5 @@
+danielP -- 2025-01-14 19:46
+  * Fixed up user flow and website navigation
 willN -- 2025-01-14 11:47
   * Added user auth functionalities :P
 willN -- 2025-01-13 18:38

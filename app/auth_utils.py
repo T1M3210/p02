@@ -18,7 +18,7 @@ def email_password_match(email, password):
     db = sqlite3.connect(DB_FILE)
     try:
         c = db.cursor()
-        c.execute("SELECT password FROM users WHERE email = ?", (email,))
+        c.execute("SELECT hash FROM users WHERE email = ?", (email,))
         stored_pw = c.fetchone()[0]
         db.commit()
     except sqlite3.Error as e:

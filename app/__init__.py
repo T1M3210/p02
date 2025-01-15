@@ -13,6 +13,7 @@ app.secret_key = os.urandom(32)
 
 from db_utils import *
 from match_utils import *
+from auth_utils import *
 
 from match_routes import init_match_routes
 from auth_routes import init_auth_routes
@@ -55,7 +56,7 @@ zoey_preferences = {
 create_user("Zoey", "Marcus", "password", "zmail@gmail.com", "8/28/2007", json.dumps(zoey_profile), json.dumps(zoey_preferences), "\{\}")
 create_match_rank(1)
 
-fill_db(100)
+fill_db(10)
 
 create_match_rank(1)
 
@@ -64,7 +65,7 @@ init_match_routes(app)
 
 @app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template('index.html', logged_in = is_logged_in(), user = get_logged_in_user())
 
 @app.route("/onboard")
 def onboard():

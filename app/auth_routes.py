@@ -8,6 +8,7 @@ from flask import render_template, request, redirect, url_for, flash, session
 
 from auth_utils import *
 from db_utils import *
+from match_utils import *
 
 def init_auth_routes(app):
     @app.route("/login", methods=['GET', 'POST'])
@@ -20,33 +21,29 @@ def init_auth_routes(app):
                 if(user_exists(email, "email")):
                         if(email_password_match(email, password)):
                                     session['user'] = read_user(user_column_to_id(email, "email"))
-                                    return redirect(url_for('matches'))
+                                    if len(read_ranks(session['user'][0])) ==  0:
+                                           return redirect(url_for('onboard'))
+                                    else:
+                                           update_match_ranks()
+                                    return redirect(url_for('home'))
                         else:
                                 flash("Incorrect password")
                 else:
                         flash("Could not find a user with that email")
-                return render_template('login.html')
-        else:
-                return render_template("login.html")
+        return render_template('login.html')
 
     @app.route("/signup", methods=['GET', 'POST'])
     def signup():
         is_signing = request.form
         if(is_signing):
-                username = request.form['username']
+                name_first = request.form['name_first']
+                name_last = request.form['name_last']
+                dob = request.form['dob']
                 email = request.form['email']
                 password = request.form['password']
                 confirm_password = request.form['confirm_password']
 
                 is_error = False
-
-                if(not is_valid_username(username)):
-                        flash("Username shouldn't contain spaces or special characters")
-                        is_error = True
-
-                if(user_exists(username, "username")):
-                        flash("An account already exists with that username")
-                        is_error = True
 
                 if(user_exists(email, "email")):
                         flash("An account already exists with that email")
@@ -57,9 +54,10 @@ def init_auth_routes(app):
                         is_error = True
 
                 if(not is_error):
-                        database.create_user(username, email, password)
-                        flash("Succesfully created account! Redirected to login")
-                        return redirect(url_for('login'))
+                        create_user(name_first, name_last, password, email, dob, json.dumps({}), json.dumps({}), json.dumps({}))
+                        flash("Successfully created account! Redirected to onboarding")
+                        session['user'] = read_user(user_column_to_id(email, "email"))
+                        return redirect(url_for('onboard'))
                 else:
                         return render_template('signup.html')
         else:
