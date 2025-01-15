@@ -6,6 +6,10 @@ p02
 
 <body>
     <section>
+        {% if users|length == 0 %}
+        <h1>no bitches :(</h1>
+        <p> maybe you're being too strict... or nobody likes your profile :O</p>
+        {% endif %}
         {% for user in users %}
         {% set profile = user[6] %}
         <div class="card">
