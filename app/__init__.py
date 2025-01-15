@@ -14,8 +14,8 @@ app.secret_key = os.urandom(32)
 from db_utils import *
 from match_utils import *
 
-from match_routes import *
-from auth_routes import *
+from match_routes import init_match_routes
+from auth_routes import init_auth_routes
 
 setup_db()
 
@@ -58,6 +58,9 @@ create_match_rank(1)
 fill_db(100)
 
 create_match_rank(1)
+
+init_auth_routes(app)
+init_match_routes(app)
 
 @app.route("/")
 def home():
