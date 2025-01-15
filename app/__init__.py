@@ -57,12 +57,14 @@ zoey_preferences = {
 
 create_user("Zoey", "Marcus", "password", "zmail@gmail.com", "8/28/2007", json.dumps(zoey_profile), json.dumps(zoey_preferences), json.dumps({}))
 
-fill_db(10)
+fill_db(100)
 
 create_match_rank(1)
 
 init_auth_routes(app)
 init_match_routes(app)
+
+update_match_ranks()
 
 @app.route("/")
 def home():

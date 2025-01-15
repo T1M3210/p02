@@ -1,6 +1,6 @@
 import json
 
-from db_utils import read_prefs, read_profile, update_user, count_users
+from db_utils import *
 
 def pref_match(user1_id, user2_id):
     score = 0
@@ -27,12 +27,25 @@ def compatibility_score(user1, user2):
 
 def create_match_rank(n):
     ranks = {}
-    for user2 in range(1, count_users()):
+    for user2 in range(1, count_users() + 1):
         if(n != user2):
             ranks[user2] = compatibility_score(n, user2)
     match_rank = dict(sorted(ranks.items(), key=lambda item: item[1], reverse=True))
     update_user(n, "match_rank", json.dumps(match_rank))
 
 def update_match_ranks():
-    for user in range(1, count_users()):
+    for user in range(1, count_users() + 1):
         create_match_rank(user)
+
+def find_liked(user_id):
+    users = []
+    for user in range(1, count_users() + 1):
+        if(user_id in read_likes(user)):
+            users.append(user)
+    print(f"People who like {user_id}: {users}")
+    return users
+
+def select_matches(user_id):
+    likes = find_liked(user_id)
+    matches = [key for key, value in read_ranks(user_id).items() if value > 0 and value not in likes]
+    return likes + matches

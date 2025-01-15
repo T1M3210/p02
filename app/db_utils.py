@@ -12,7 +12,7 @@ import random
 import string
 from datetime import datetime
 
-from auth_utils import password_hash
+from auth_utils import password_hash, get_logged_in_user
 
 #Establish database file path
 DB_FILE = os.path.join(os.path.dirname(__file__), "../xase.db")
@@ -32,7 +32,7 @@ def create_tables(db):
                 profile JSON NOT NULL,
                 preferences JSON NOT NULL,
                 match_rank JSON NOT NULL,
-                liked TEXT COLLATE NOCASE
+                liked TEXT COLLATE NOCASE DEFAULT ''
             );
             ''')
         db.commit()
@@ -185,8 +185,10 @@ def read_likes(user_id):
 def add_like(user_id):
     logged_in_user = get_logged_in_user()[0]
     existing_likes = read_likes(logged_in_user)
+    if(user_id in existing_likes):
+        return None
     existing_likes.append(user_id)
-    new_string = existing_likes.join(',')
+    new_string = ','.join([str(i) for i in existing_likes])
     db = sqlite3.connect(DB_FILE)
     try:
         c = db.cursor()
@@ -304,9 +306,5 @@ def fill_db(n):
                 "required": random.choice([False])
             }
         }
-        match_rank = {
-            f"user_{i}": random.randint(50, 100)  # Compatibility scores
-            for i in range(1, random.randint(5, 15))  # Random number of matches
-        }
-
+        match_rank = {}
         create_user(first_name, last_name, "password", email, dob, json.dumps(profile), json.dumps(prefs), json.dumps(match_rank))
