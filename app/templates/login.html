@@ -1,38 +1,57 @@
-<html>
+<html class="h-full bg-white">
 <head>
+    <title> Log In </title>
+    <link href="{{ url_for('static', filename='css/fonts.css') }}" rel="stylesheet" type="text/css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://use.typekit.net/gma7sba.css" rel="stylesheet"></head>
+<body class="h-full">
 
-    <title> Login </title>
-    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" type="text/css">
-</head>
-<body>
-<img class="logo" src="static/assets/logo.jpg">
-<section class="centered-login">
-<h1 style="text-align: center;margin-bottom: 50px;">
-    Welcome back!
-</h1>
+
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <img class="mx-auto h-20 w-auto" src="{{ url_for('static', filename='assets/logo.svg') }}" alt="Your Company">
+        <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Log in to Stuymble</h2>
+    </div>
+
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form class="space-y-6" action="/login" method="POST">
+
+            <div>
+                <label for="email" class="block text-sm/6 font-medium text-gray-900">Email</label>
+                <div class="mt-2">
+                    <input type="email" name="email" id="email" autocomplete="email" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                </div>
+            </div>
+
+
+
+            <div>
+                <label for="password" class="block text-sm/6 font-medium text-gray-900">Password</label>
+                <div class="mt-2">
+                    <input type="password" name="password" id="password" autocomplete="password" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                </div>
+            </div>
+
+
+            <div>
+                <button type="submit" class="flex w-full justify-center rounded-md bg-[#e32636] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-[#dc191c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e32636]">Sign Up</button>
+            </div>
+        </form>
+
+        <p class="mt-10 text-center text-sm/6 text-gray-500">
+            Don't have an account with us?
+            <a href="/signup" class="font-semibold text-indigo-600 hover:text-indigo-500">Sign up now.</a>
+        </p>
+    </div>
+</div>
+
 {% with messages = get_flashed_messages()%}
     {% if messages%}
         {% for message in messages%}
-        <p>{{message}}</p>
+            <p>{{message}}</p>
         {%endfor%}
     {%endif%}
 {%endwith%}
-<form action="/login" method="POST">
-    <label>
-        <h3>Email</h3>
-        <input type="email" name="email" placeholder="name@example.com" required>
-    </label><br>
-    <label>
-        <h3>Password</h3>
-        <input type="password" name="password" placeholder="Your Password" required>
-    </label><br>
-    <h3> </h3>
-    <button type="submit" name="sub1">Login</button>
-    <p style="text-align: center">{{ message }}</p>
-</form>
-<br>
-<h3 style="text-align: center">Don't have an account? Sign up <a href="/signup">here</a></h3>
-</section>
 
 </body>
 

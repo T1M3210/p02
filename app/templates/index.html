@@ -39,7 +39,7 @@
         <div class="flex lg:flex-1">
           <a href="#" class="-m-1.5 p-1.5">
             <span class="sr-only">Your Company</span>
-            <img class="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="">
+            <img class="h-11 w-auto" src="{{ url_for('static', filename='assets/logo.svg') }}" alt="">
           </a>
         </div>
         <div class="flex lg:hidden">
@@ -55,8 +55,9 @@
                 <a href="/profile" class="text-sm/6 font-semibold text-gray-900">{{ user[1] }} <span aria-hidden="true"></span></a>
                 <a href="/logout" class="text-sm/6 font-semibold text-gray-900">Log Out <span aria-hidden="true"></span></a>
             {% else %}
-                <a href="/login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true"></span></a>
-                <a href="/login" class="text-sm/6 font-semibold text-gray-900">Sign up <span aria-hidden="true"></span></a>
+                <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                    <a href="/login" class="text-sm/6 font-semibold text-gray-900">Log In <span aria-hidden="true">&rarr;</span></a>
+                </div>
             {% endif %}
         </div>
       </nav>
@@ -70,7 +71,7 @@
       </div>
       <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
         <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-          <div class="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+          <div class="mb-1 relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
             Announcing our new batch of TM Emotes! <a href="#" class="font-semibold text-[#e32636]"><span class="absolute inset-0" aria-hidden="true"></span>Get them now <span aria-hidden="true">&rarr;</span></a>
           </div>
         </div>
@@ -83,14 +84,58 @@
                 <a href="/profile" class="text-sm/6 font-semibold text-gray-900">Update Profile <span aria-hidden="true">→</span></a>
             </div>
           {% else %}
-            <p class="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">Match with your future at Stuyvesant High School. To get started, you need to answer a couple of personal questions for us to determine your compatibility.</p>
+            <p class="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">Your heart deserves to be as full as your mind. Match with your future at Stuyvesant High School. Share your interests, preferences, and a bit about yourself, and let us play Cupid.</p>
             <div class="mt-10 flex items-center justify-center gap-x-6">
-                <a href="/login" class="rounded-md bg-[#e32636] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#dc191c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e32636]">Login To Get Matched!</a>
+                <a href="/login" class="rounded-md bg-[#e32636] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#dc191c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e32636]">Get Matched Now</a>
             </div>
           {% endif %}
         </div>
       </div>
     </div>
   </div>
+
+  <div class="-mt-24 overflow-hidden bg-white py-24 sm:py-32">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+          <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+              <div class="lg:pr-8 lg:pt-4">
+                  <div class="lg:max-w-lg">
+                      <h2 class="text-base/7 font-semibold text-indigo-600">Find love easily and securely</h2>
+                      <p class="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Match Guaranteed Within Stuyvesant</p>
+                      <dl class="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
+                          <div class="relative pl-9">
+                              <dt class="inline font-semibold text-gray-900">
+                                  <svg class="absolute left-1 top-1 size-5 text-indigo-600" viewBox="0 0 22 22" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                      <path d="M16.604 11.048a5.67 5.67 0 0 0 .751-3.44c-.179-1.784-1.175-3.361-2.803-4.44l-1.105 1.666c1.119.742 1.8 1.799 1.918 2.974a3.693 3.693 0 0 1-1.072 2.986l-1.192 1.192 1.618.475C18.951 13.701 19 17.957 19 18h2c0-1.789-.956-5.285-4.396-6.952z"></path><path d="M9.5 12c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4zm0-6c1.103 0 2 .897 2 2s-.897 2-2 2-2-.897-2-2 .897-2 2-2zm1.5 7H8c-3.309 0-6 2.691-6 6v1h2v-1c0-2.206 1.794-4 4-4h3c2.206 0 4 1.794 4 4v1h2v-1c0-3.309-2.691-6-6-6z"></path>
+                                  </svg>
+                                  Intelligent Algorithm.
+                              </dt>
+                              <dd class="inline">We’ll deliver profiles you’ll love by carefully factoring in every detail that matters—interests, gender, height, and more.</dd>
+                          </div>
+                          <div class="relative pl-9">
+                              <dt class="inline font-semibold text-gray-900">
+                                  <svg class="absolute left-1 top-1 size-5 text-indigo-600" viewBox="0 0 22 22" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                      <path d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zm6 10 .002 8H6v-8h12zm-9-2V7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9z"></path>
+                                  </svg>
+                                  Secure and Private.
+                              </dt>
+                              <dd class="inline">Your privacy is our priority. Stuymble ensures all your data is secure and confidential, so you can focus on finding love without worry. Safe swipes, heartfelt matches.</dd>
+                          </div>
+                          <div class="relative pl-9">
+                              <dt class="inline font-semibold text-gray-900">
+                                  <svg class="absolute left-1 top-1 size-5 text-indigo-600" viewBox="0 0 22 22" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                      <path d="M20 4H6c-1.103 0-2 .897-2 2v5h2V8l6.4 4.8a1.001 1.001 0 0 0 1.2 0L20 8v9h-8v2h8c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm-7 6.75L6.666 6h12.668L13 10.75z"></path><path d="M2 12h7v2H2zm2 3h6v2H4zm3 3h4v2H7z"></path>
+                                  </svg>
+                                  Sweet sweet conversation.
+                              </dt>
+                              <dd class="inline">Stay connected to your sweetest conversations with real-time email notifications. Never miss a message from your perfect match!</dd>
+                          </div>
+                      </dl>
+                  </div>
+              </div>
+              <img src="https://tailwindui.com/plus/img/component-images/dark-project-app-screenshot.png" alt="Product screenshot" class="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442">
+          </div>
+      </div>
+  </div>
+
 </body>
 </html>
