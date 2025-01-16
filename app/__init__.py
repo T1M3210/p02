@@ -59,12 +59,10 @@ create_user("Zoey", "Marcus", "password", "zmail@gmail.com", "8/28/2007", json.d
 
 fill_db(100)
 
-create_match_rank(1)
-
 init_auth_routes(app)
 init_match_routes(app)
 
-update_match_ranks()
+#update_match_ranks()
 
 @app.route("/")
 def home():
@@ -72,6 +70,7 @@ def home():
 
 @app.route("/onboard")
 def onboard():
+    # get survey data, then call create_match_rank(get_logged_in_user()[0])
     return render_template('onboarding.html')
 
 @app.route("/profile")

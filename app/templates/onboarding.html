@@ -35,20 +35,56 @@
 <body>
   <section>
     <h1>Stuymble over love</h1>
-    <h2>Match with your future at Stuyvesant High School. To get started, you need to answer a couple of personal questions for us to determine your compatibility.</h2>
-    <form id="selectionForm" method="POST">
-        <label for="like">Choose a category:</label>
-        <select name="like" id="like" onchange="submitSelectionForm()">
-            {% for category in categories %}
-                <option value="{{ category }}"
-                        {% if category == selected_category %}
-                            selected
-                        {% endif %}
-                >
-                    {{ category }}
-                </option>
-            {% endfor %}
-        </select>
+    <h2>PROFILE FORM</h2> </br>
+    <form id="profileForm" method="POST">
+
+      <label for="grades" required>Grade Level:</label>
+      <select name="grades" id="grade">
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+      </select>
+
+    </br>
+
+      <label for="genders" required>Gender:</label>
+      <select name="genders" id="gender">
+        <option value="Female">Female</option>
+        <option value="Male">Male</option>
+        <option value="Nonbinary/other">Nonbinary/other</option>
+      </select>
+
+    </br>
+
+      <button required>Select at least one interest</button> </br>
+      <div class="dropdown-content">
+        <label><input type="checkbox" name="sports" value="sports"> Sports</label>
+        <label><input type="checkbox" name="movies" value="movies"> Movies</label>
+        <label><input type="checkbox" name="studying" value="studying"> Studying</label>
+        <label><input type="checkbox" name="reading" value="reading"> Reading</label>
+      </div>
+
+      <label for="bio" required>Bio:</label>
+      <input type="textarea" id="bio" name="bio"><br><br>
+
+    </form>
+
+    <h2>PREFERENCE FORM</h2> </br>
+    <form id="preferenceForm" method="POST">
+
+      PREFERRED GRADES: </br>
+      <label><input type="checkbox" name="grade_9" value="grade_9">9</label>
+      <label><input type="checkbox" name="grade_10" value="grade_10">10</label>
+      <label><input type="checkbox" name="grade_11" value="grade_11">11</label>
+      <label><input type="checkbox" name="grade_12" value="grade_12">12</label>
+
+    </br>  PREFERRED GENDERS: </br>
+      <label><input type="checkbox" name="female" value="female">female</label>
+      <label><input type="checkbox" name="male" value="male">male</label>
+      <label><input type="checkbox" name="nonbinary" value="nonbinary">nonbinary</label>
+
+
     </form>
 </section>
 </body>

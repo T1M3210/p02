@@ -7,6 +7,7 @@
 import json
 import sqlite3
 import os
+import os.path
 
 import random
 import string
@@ -52,11 +53,12 @@ def drop_tables(db):
         c.close()
 
 def setup_db():
-    db = sqlite3.connect(DB_FILE)
-    drop_tables(db)
-    create_tables(db)
-    db.commit()
-    db.close()
+    if(not os.path.isfile(DB_FILE)):
+        db = sqlite3.connect(DB_FILE)
+        drop_tables(db)
+        create_tables(db)
+        db.commit()
+        db.close()
 
 # --------------- Operational Funcprofiletions ---------------
 
@@ -176,7 +178,7 @@ def read_likes(user_id):
             else:
                 likes_list.pop(i)
                 i -= 1
-        return  likes_list
+        return likes_list
     except sqlite3.Error as e:
         print(f"read_likes: {e}")
     finally:
@@ -184,15 +186,15 @@ def read_likes(user_id):
 
 def add_like(user_id):
     logged_in_user = get_logged_in_user()[0]
-    existing_likes = read_likes(logged_in_user)
-    if(user_id in existing_likes):
+    existing_likes = read_likes(user_id)
+    if(logged_in_user in existing_likes):
         return None
-    existing_likes.append(user_id)
+    existing_likes.append(logged_in_user)
     new_string = ','.join([str(i) for i in existing_likes])
     db = sqlite3.connect(DB_FILE)
     try:
         c = db.cursor()
-        c.execute(f"UPDATE users SET liked = ? WHERE id = ?", (new_string, logged_in_user))
+        c.execute(f"UPDATE users SET liked = ? WHERE id = ?", (new_string, user_id))
         db.commit()
     except sqlite3.Error as e:
         print(f"add_like: {e}")

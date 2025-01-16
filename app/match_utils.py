@@ -37,15 +37,7 @@ def update_match_ranks():
     for user in range(1, count_users() + 1):
         create_match_rank(user)
 
-def find_liked(user_id):
-    users = []
-    for user in range(1, count_users() + 1):
-        if(user_id in read_likes(user)):
-            users.append(user)
-    print(f"People who like {user_id}: {users}")
-    return users
-
 def select_matches(user_id):
-    likes = find_liked(user_id)
+    likes = read_likes(user_id)
     matches = [key for key, value in read_ranks(user_id).items() if value > 0 and value not in likes]
     return likes + matches

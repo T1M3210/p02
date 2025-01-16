@@ -21,10 +21,10 @@ def init_auth_routes(app):
                 if(user_exists(email, "email")):
                         if(email_password_match(email, password)):
                                     session['user'] = read_user(user_column_to_id(email, "email"))
-                                    if len(read_ranks(session['user'][0])) ==  0:
+                                    if len(read_ranks(get_logged_in_user()[0])) ==  0:
                                            return redirect(url_for('onboard'))
                                     else:
-                                           update_match_ranks()
+                                           create_match_rank(get_logged_in_user()[0])
                                     return redirect(url_for('home'))
                         else:
                                 flash("Incorrect password")
