@@ -1,32 +1,43 @@
-danielP -- 2025-01-14 19:46
-  * Fixed up user flow and website navigation
-willN -- 2025-01-14 11:47
-  * Added user auth functionalities :P
-willN -- 2025-01-13 18:38
-  * Changed matching algo to reward points per interest
-  * Added function to fill db w randomized user presets 
-danielP -- 2025-01-13 11:00
-  * Wrote matching algo
-timN -- 2025-01-13 10:57
-  * Finished README.md (launch code + install guide)
-  * Added keys folder with README.md
-timN -- 2025-01-10 11:45
-  * Added basic function to link database to __init__.py
-danielP -- 2025-01-10 11:43
-  * Added basic functions for math algo
-willN -- 2025-01-10 11:42:
-  * Added basic functions for database
-yinweiZ -- 2025-01-100 11:41
-  * Created onboarding page structure, js and html
-willN -- 2025-01-09 21:10
-  * Updated design doc:
-    * added specific JSON formatting for db
-    * updated user matching algo on db
 yinweiZ -- 2025-01-07 18:00
   * Created flag
+danielP -- 2025-01-08 17:50
+  * Edited devlog.txt
 timN -- 2025-01-08 05:50
   * Finished Design Doc
   * Created devlog.txt
   * Updated README with roles and WIP description
-danielP -- 2025-01-08 17:50
-  * Edited devlog.txt
+willN -- 2025-01-09 21:10
+  * Updated design doc:
+    * added specific JSON formatting for db
+    * updated user matching algo on db
+yinweiZ -- 2025-01-10 11:41
+  * Created onboarding page structure, js and html
+willN -- 2025-01-10 11:42:
+  * Added basic functions for database
+danielP -- 2025-01-10 11:43
+  * Added basic functions for math algo
+timN -- 2025-01-10 11:45
+  * Added basic function to link database to __init__.py
+timN -- 2025-01-13 10:57
+  * Finished README.md (launch code + install guide)
+  * Added keys folder with README.md
+danielP -- 2025-01-13 11:00
+  * Wrote matching algo
+willN -- 2025-01-13 18:38
+  * Changed matching algo to reward points per interest
+  * Added function to fill db w randomized user presets 
+willN -- 2025-01-14 11:47
+  * Added user auth functionalities :P
+danielP -- 2025-01-14 19:46
+  * Fixed up user flow and website navigation
+
+
+
+
+
+
+
+
+
+
+
