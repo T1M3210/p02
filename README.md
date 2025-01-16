@@ -1,4 +1,4 @@
-# p02 - lobo2
+# Stuymble by lobo2
 ## Roster
 - Tim Ng (Project Manager)
 - Daniel Park
