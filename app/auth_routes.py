@@ -22,7 +22,7 @@ def init_auth_routes(app):
                         if(email_password_match(email, password)):
                                     session['user'] = read_user(user_column_to_id(email, "email"))
                                     if len(read_ranks(get_logged_in_user()[0])) ==  0:
-                                           return redirect(url_for('onboard'))
+                                           return redirect(url_for('home'))
                                     else:
                                            create_match_rank(get_logged_in_user()[0])
                                     return redirect(url_for('home'))
@@ -55,9 +55,9 @@ def init_auth_routes(app):
 
                 if(not is_error):
                         create_user(name_first, name_last, password, email, dob, json.dumps({}), json.dumps({}), json.dumps({}))
-                        flash("Successfully created account! Redirected to onboarding")
+                        flash("Successfully created account! Redirected to home")
                         session['user'] = read_user(user_column_to_id(email, "email"))
-                        return redirect(url_for('onboard'))
+                        return redirect(url_for('home'))
                 else:
                         return render_template('signup.html')
         else:

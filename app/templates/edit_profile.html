@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link href="{{ url_for('static', filename='css/fonts.css') }}" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <nav class="bg-gray-800 p-4 text-white">
+        <a href="/" class="text-xl">Stuymble</a>
+    </nav>
+
+    <main class="p-8">
+        <h1 class="text-3xl font-bold mb-4">Edit Profile</h1>
+        <form action="/edit_profile" method="POST" class="max-w-md mx-auto bg-gray-100 p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-2">Profile</h2>
+            <label for="grade" class="block text-gray-700 font-medium">Grade Level:</label>
+            <select name="grade" id="grade" class="w-full p-2 border rounded mb-4">
+                <option value="9" {% if user['profile']['grade'] == "9" %}selected{% endif %}>9</option>
+                <option value="10" {% if user['profile']['grade'] == "10" %}selected{% endif %}>10</option>
+                <option value="11" {% if user['profile']['grade'] == "11" %}selected{% endif %}>11</option>
+                <option value="12" {% if user['profile']['grade'] == "12" %}selected{% endif %}>12</option>
+            </select>
+
+            <label for="gender" class="block text-gray-700 font-medium">Gender:</label>
+            <select name="gender" id="gender" class="w-full p-2 border rounded mb-4">
+                <option value="Female" {% if user['profile']['gender'] == "Female" %}selected{% endif %}>Female</option>
+                <option value="Male" {% if user['profile']['gender'] == "Male" %}selected{% endif %}>Male</option>
+                <option value="Nonbinary/other" {% if user['profile']['gender'] == "Nonbinary/other" %}selected{% endif %}>Nonbinary/Other</option>
+            </select>
+
+            <label class="block text-gray-700 font-medium mb-2">Interests:</label>
+            <div class="flex flex-wrap gap-2 mb-4">
+                {% for interest in ['Sports', 'Movies', 'Studying', 'Reading'] %}
+                <label class="flex items-center">
+                    <input type="checkbox" name="interests" value="{{ interest }}" class="mr-2"
+                           {% if interest in user['profile']['interests'] %}checked{% endif %}>
+                    {{ interest }}
+                </label>
+                {% endfor %}
+            </div>
+
+            <label for="bio" class="block text-gray-700 font-medium">Bio:</label>
+            <textarea name="bio" id="bio" rows="3" class="w-full p-2 border rounded mb-4">{{ user['profile']['bio'] }}</textarea>
+
+            <h2 class="text-xl font-semibold mb-2">Preferences</h2>
+            <label class="block text-gray-700 font-medium mb-2">Preferred Grades:</label>
+            <div class="flex flex-wrap gap-2 mb-4">
+                {% for grade in ['9', '10', '11', '12'] %}
+                <label class="flex items-center">
+                    <input type="checkbox" name="preferred_grades" value="{{ grade }}" class="mr-2"
+                           {% if grade in user['preferences']['grades'] %}checked{% endif %}>
+                    {{ grade }}
+                </label>
+                {% endfor %}
+            </div>
+
+            <label class="block text-gray-700 font-medium mb-2">Preferred Genders:</label>
+            <div class="flex flex-wrap gap-2 mb-4">
+                {% for gender in ['female', 'male', 'nonbinary'] %}
+                <label class="flex items-center">
+                    <input type="checkbox" name="preferred_genders" value="{{ gender }}" class="mr-2"
+                           {% if gender in user['preferences']['genders'] %}checked{% endif %}>
+                    {{ gender }}
+                </label>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Save Changes</button>
+        </form>
+    </main>
+</body>
+</html>

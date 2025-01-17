@@ -1,61 +1,48 @@
-<!-- Tim Ng, Daniel Park, Will Nzeuton, Yinwei Zhang
-Team lobo2
-SoftDev
-p02
-2024-1-09 -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-
-    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" type="text/css">
-    <link href="https://use.typekit.net/gma7sba.css" rel="stylesheet">
+    <title>My Profile</title>
+    <link href="{{ url_for('static', filename='css/fonts.css') }}" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-<img src="{{ url_for('static', filename='images/XBXLOBOG.svg') }}" alt="XBXLOBOG" style="height: 50px">
-{% if guest %}
-    <div class="guest-view">
-        <h2>Log In To Access Your Profile</h2>
-        <div class="auth-opts">
-            <a href="/login"><h2 class="button">Log In</h2></a>
-            <a href="/signup"><h2 class="button">Sign Up</h2></a>
-        </div>
-    </div>
-{% else %}
-    <div class="guest-view">
-        <h2>Find love now, {{ username }}!</h2>
-        <div class="auth-opts">
-            <a href="/user/{{ username }}"><h2 class="button">Profile</h2></a>
-            <a href="/logout"><h2 class="button">Log Out</h2></a>
-        </div>
-    </div>
-{% endif %}
+    <nav class="bg-gray-800 p-4 text-white">
+        <a href="/" class="text-xl">Stuymble</a>
+    </nav>
 
-<section class="hero-grid">
-    <a class="all-blogs" href="/blogs">
-            <img src="{{ url_for('static', filename='images/icons/all.svg') }}" alt="All Blogs" style="width: 100px; margin-bottom: 20px">
-            <h2 style="margin: 10px; color: #dadada">Match Now!</h2>
-    </a>
-    <a class="categories" href="/category">
-        <img src="{{ url_for('static', filename='images/icons/filter.svg') }}" alt="Messaging" style="width: 50px; margin-bottom: 20px">
-        <h2 style="margin: 5px">Messaging</h2>
-    </a>
-    {% if guest %}
-        <a class="my-account" href="/login">
-            <img src="{{ url_for('static', filename='images/icons/user.svg') }}" alt="Log In" style="width: 50px; margin-bottom: 20px">
-            <h2 style="margin: 5px">Log In</h2>
-        </a>
-    {% else %}
-        <a class="my-account" href="/user/{{ username }}">
-            <img src="{{ url_for('static', filename='images/icons/user.svg') }}" alt="My Account" style="width: 50px; margin-bottom: 20px">
-            <h2 style="margin: 5px">My Profile</h2>
-        </a>
-    {% endif %}
-</section>
+    <main class="p-8">
+        <h1 class="text-3xl font-bold mb-4">My Profile</h1>
+        {% if guest %}
+        <p class="text-lg">Please <a href="/login" class="text-red-500">log in</a> to view or edit your profile.</p>
+        {% else %}
+        <div class="max-w-md mx-auto bg-gray-100 p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-center">{{ user['name_first'] }} {{ user['name_last'] }}</h2>
+            <p class="text-center text-gray-600 mt-2">Grade: {{ user['profile']['grade'] }}</p>
+            <p class="text-center text-gray-600">Gender: {{ user['profile']['gender'] }}</p>
+            <p class="text-center text-gray-600">Bio: {{ user['profile']['bio'] }}</p>
 
-<p style="margin-top: 50px;">Created by Team <b style = "color:violet">lobo2</b></p>
+            <h3 class="text-lg font-semibold mt-4">Interests</h3>
+            {% if user['profile']['interests']|length == 0 %}
+            <p class="text-gray-600">No interests selected.</p>
+            {% else %}
+            <ul class="list-disc list-inside text-gray-700">
+                {% for interest in user['profile']['interests'] %}
+                <li>{{ interest }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <h3 class="text-lg font-semibold mt-4">Preferences</h3>
+            <ul class="list-disc list-inside text-gray-700">
+                <li>Preferred Grades: {{ user['preferences']['grades'] | join(', ') }}</li>
+                <li>Preferred Genders: {{ user['preferences']['genders'] | join(', ') }}</li>
+            </ul>
+
+            <a href="/edit_profile" class="block mt-4 text-center bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Edit Profile</a>
+        </div>
+        {% endif %}
+    </main>
 </body>
 </html>

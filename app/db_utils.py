@@ -53,12 +53,19 @@ def drop_tables(db):
         c.close()
 
 def setup_db():
-    if(not os.path.isfile(DB_FILE)):
+    if not os.path.isfile(DB_FILE):
         db = sqlite3.connect(DB_FILE)
         drop_tables(db)
         create_tables(db)
+
+        fill_db(10)
+
+        for user_id in range(1, count_users() + 1):
+            create_match_rank(user_id)
+
         db.commit()
         db.close()
+
 
 # --------------- Operational Funcprofiletions ---------------
 
@@ -88,20 +95,17 @@ def read_user(id):
         c.close()
         return user
 
-def update_user(id, type, new_value):
-    #sql sanitation (sanitization?)
-    if type not in ['name_first', 'name_last', 'password', 'email', 'dob', 'profile', 'preferences', 'match_rank']:
-        print("Invalid column type")
-    else:
-        db = sqlite3.connect(DB_FILE)
-        try:
-            c = db.cursor()
-            c.execute(f"UPDATE users SET {type} = ? WHERE id = ?", (new_value, id))
-            db.commit()
-        except sqlite3.Error as e:
-            print(f"update_user: {e}")
-        finally:
-            c.close()
+def update_user(id, column, new_value):
+    db = sqlite3.connect(DB_FILE)
+    try:
+        c = db.cursor()
+        c.execute(f"UPDATE users SET {column} = ? WHERE id = ?", (new_value, id))
+        db.commit()
+    except sqlite3.Error as e:
+        print(f"update_user: {e}")
+    finally:
+        c.close()
+
 
 def delete_user(id):
     db = sqlite3.connect(DB_FILE)
