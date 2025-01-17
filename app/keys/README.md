@@ -1,6 +1,3 @@
-# OUR KEYS
+NO KEYS USED 
 
-# Spotify API 
-- Requires API Key
-- Key Name: spotify_key
-- 180 requests/minute 
+
