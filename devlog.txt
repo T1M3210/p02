@@ -30,7 +30,9 @@ willN -- 2025-01-14 11:47
   * Added user auth functionalities :P
 danielP -- 2025-01-14 19:46
   * Fixed up user flow and website navigation
-
+timN -- 2025-01-17 06:19
+  * Did as much as I could with the amount of knowledge I had 
+  * Deeply upset with how this went 
 
 
 
