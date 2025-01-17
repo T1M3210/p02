@@ -43,7 +43,7 @@ $ cd p02
 ```
 3. Create a virtual environment
 ```
-$ python3 -m venv foo
+$ python3 venv foo
 ```
 
 4. Activate the virtual environment: Linux/MacOS
@@ -59,18 +59,15 @@ $ foo\Scripts\activate
 $ pip install -r requirements.txt
 ```
 ## Launch Codes: 
-1. Run the database setup file
-``` 
-$ python3 app/setup_db.py
-```
-2. Locate and run the app file
+
+1. Locate and run the app file
 ``` 
 $ cd app
 ```
 ``` 
 $ python3 __init__.py
 ```
-3. Access the Application: Open your browser and go to http://127.0.0.1:5000 or click the link that appears in your terminal output.
+2. Access the Application: Open your browser and go to http://127.0.0.1:5000 or click the link that appears in your terminal output.
 To stop the app, press CTRL + C
 
 Format for Launch Codes + Install Guide courtesy of Benjamin Rudinski. 
