@@ -18,6 +18,8 @@ danielP -- 2025-01-10 11:43
   * Added basic functions for math algo
 timN -- 2025-01-10 11:45
   * Added basic function to link database to __init__.py
+yinweiZ -- 2025-01-13 8:00
+  * Profile routing and index, xase improvements
 timN -- 2025-01-13 10:57
   * Finished README.md (launch code + install guide)
   * Added keys folder with README.md
@@ -28,8 +30,12 @@ willN -- 2025-01-13 18:38
   * Added function to fill db w randomized user presets 
 willN -- 2025-01-14 11:47
   * Added user auth functionalities :P
+yinweiZ -- 2025-01-14 18:00
+  * Created main page FEF
 danielP -- 2025-01-14 19:46
   * Fixed up user flow and website navigation
+yinweiZ -- 2025-01-15 12:00
+  * Created dashboard
 timN -- 2025-01-17 06:19
   * Did as much as I could with the amount of knowledge I had 
   * Deeply upset with how this went 
